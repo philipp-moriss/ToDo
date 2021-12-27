@@ -1,0 +1,36 @@
+import React from 'react';
+
+import style from '../ToDoList/ToDoList.module.css';
+import { Card } from '../ToDoList/types/types';
+
+type TasksPropsType = {
+  tasks: Array<Card>;
+  CheckTaskCallback: (id: string) => void;
+  DelateTaskCallback: (id: string) => void;
+};
+
+export const Tasks: React.FC<TasksPropsType> = ({
+  tasks,
+  DelateTaskCallback,
+  CheckTaskCallback,
+}): React.ReactElement => (
+  <div className={style.tasksContainer}>
+    {tasks.map(task => (
+      <div key={task.id} className={style.Task}>
+        <button type="button" onClick={() => DelateTaskCallback(task.id)}>
+          Delete
+        </button>
+        {task.title}
+        <label>
+          <input
+            onChange={() => CheckTaskCallback(task.id)}
+            type="checkbox"
+            className="filled-in"
+            checked={task.checked}
+          />
+          {task.checked ? <span>Checked</span> : <span>Not checked</span>}
+        </label>
+      </div>
+    ))}
+  </div>
+);
