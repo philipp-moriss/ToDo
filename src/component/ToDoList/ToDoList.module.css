@@ -1,0 +1,18 @@
+.ToDoListContainer {
+    background: #fbf6dc;
+    min-height: 66%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+
+@media all and (max-width: 700px){
+    .ToDoListContainer{
+        height: 100%;
+        width: 100%;
+    }
+}

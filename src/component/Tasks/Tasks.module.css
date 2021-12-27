@@ -1,36 +1,29 @@
-import React from 'react';
 
-import style from '../ToDoList/ToDoList.module.css';
-import { Card } from '../ToDoList/types/types';
+.tasksContainer {
+  font-size: 22px ;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.Task {
+  border:1px solid black ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px ;
+  padding: 10px;
+  border-radius: 30px;
+  flex-direction: column-reverse;
+}
+.Task button {
+  border-radius: 30px;
+}
+.Task label{
+  margin: 5px;
+}
 
-type TasksPropsType = {
-  tasks: Array<Card>;
-  CheckTaskCallback: (id: string) => void;
-  DelateTaskCallback: (id: string) => void;
-};
-
-export const Tasks: React.FC<TasksPropsType> = ({
-  tasks,
-  DelateTaskCallback,
-  CheckTaskCallback,
-}): React.ReactElement => (
-  <div className={style.tasksContainer}>
-    {tasks.map(task => (
-      <div key={task.id} className={style.Task}>
-        <button type="button" onClick={() => DelateTaskCallback(task.id)}>
-          Delete
-        </button>
-        {task.title}
-        <label>
-          <input
-            onChange={() => CheckTaskCallback(task.id)}
-            type="checkbox"
-            className="filled-in"
-            checked={task.checked}
-          />
-          {task.checked ? <span>Checked</span> : <span>Not checked</span>}
-        </label>
-      </div>
-    ))}
-  </div>
-);
+.Task + .Task {
+  margin: 10px;
+}

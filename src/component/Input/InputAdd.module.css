@@ -1,40 +1,17 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+.ErrorColor{
+  color: #da4b4b;
+}
 
-import { useForm } from 'react-hook-form';
 
-import style from '../ToDoList/ToDoList.module.css';
 
-type InputAddPropsType = {
-  addTaskCallback: (value: string) => void;
-};
-
-export const InputAdd: React.FC<InputAddPropsType> = ({
-  addTaskCallback,
-}): React.ReactElement => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
-  const onSubmitHandler = (data: { Title: string }): void => {
-    addTaskCallback(data.Title.trim());
-    setValue('Title', '');
-  };
-  return (
-    <form className={style.inputContainer} onSubmit={handleSubmit(onSubmitHandler)}>
-      <input
-        placeholder="input Text"
-        {...register('Title', { required: true, minLength: 1, maxLength: 10 })}
-      />
-      {errors?.Title?.type === 'required' && <p>This field is required</p>}
-      {errors?.Title?.type === 'maxLength' && (
-        <p>First name cannot exceed 10 characters</p>
-      )}
-      {errors?.Title?.type === 'minLength' && (
-        <p>First name cannot less than one character</p>
-      )}
-      <button type="submit">Add Task</button>
-    </form>
-  );
-};
+.inputContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.inputContainer button {
+  margin: 10px;
+  height: 40px;
+  border-radius: 30px;
+}
